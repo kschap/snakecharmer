@@ -5,6 +5,7 @@ I'm really looking forward to long nights in the library again. I don't know why
 Maybe it's because it's the only time that I can actually get things done.
 """
 import tweepy
+from geopy.geocoders import GoogleV3
 """
 Initializes the API.
 Here's where it gets interesting. Because I don't know of any good ways of securing the keys from others, I'm just going to remove them.
@@ -36,11 +37,31 @@ def search():
 		print result.text
 	mainMenu()
 
+# Creates a prompt for the user to spoof their location.
+def waldo():
+	tweet = raw_input("\nWhat's on your mind? ")
+	location = raw_input("\nWhere would you like to tweet from? ")
+	#Now, to determine the latitude and longitude of the location, we use geopy.
+	engine = GoogleV3()
+	location = engine.geocode(location)
+	lat = location.latitude
+	longitude = location.longitude
+	# Now, we take these three bits of information and mix them all up...
+	api.update_status(status=tweet, lat=lat, long=longitude)
+	mainMenu()
+
 # Tweets from the current user's account.
 def tweet():
-	tweet = raw_input("\nWhat's on your mind? ")
-	api.update_status(tweet)
-	mainMenu()
+	option = input("Would you like to spoof your location?\n1. Yes\n2. No\nYour answer: ")
+	if option == 1:
+		waldo()
+	elif option == 2:
+		tweet = raw_input("\nWhat's on your mind? ")
+		api.update_status(tweet)
+		mainMenu()
+	else:
+		print "\nYou screwed up! Try again!"
+		tweet()
 
 # Searches for a screen name and prints latest tweets from them.
 def stalk():
