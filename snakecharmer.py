@@ -7,10 +7,10 @@ Here's where it gets interesting. Because I don't know of any good ways of secur
 If you want access keys, email me at kmschapm AT oakland DOT edu.
 Don't spam me though. That's bad.
 """
-consumer_key = ''
-consumer_secret = ''
-token_key = ''
-token_secret = ''
+consumer_key = 'xOu5gRJhuSuPicueupww'
+consumer_secret = 'z0eiUbJZJjYTiH4jgQmNvVxIGWooXn0nDFrCXNH38'
+token_key = '516205132-66XBDjsDq4Pr4MilnRkKaJZskhrpdtLxZjJ9ZGKU'
+token_secret = 'ZNi7S7EsDglTeQABoe9zzYzRQepjfyhEgSjQIMIIA8'
 
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(token_key, token_secret)
@@ -129,7 +129,7 @@ def checkdm():
 
 # Main menu (duh...)
 def mainMenu():
-	print "\nSnake Charmer, version 0.4"
+	print "\nSnake Charmer, version 0.5"
 	user = api.me()
 	print "Tweeting as: @" + user.screen_name + " | " + user.name
 	print "Make a selection"
