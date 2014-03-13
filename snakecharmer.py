@@ -1,4 +1,4 @@
-# Snake Charmer, version 0.5.
+# Snake Charmer, version 0.6.
 import tweepy
 from geopy.geocoders import GoogleV3
 """
@@ -46,14 +46,31 @@ def waldo():
 	api.update_status(status=tweet, lat=lat, long=longitude)
 	mainMenu()
 
+# Allows for a user to reply to somebody's tweet.
+def reply():
+	tweetId = input("What is the tweet number of the tweet you wish to respond to? ")
+	user = raw_input("What is that user's username? ")
+	tweet = raw_input("What do you want to say to them? ")
+	api.update_status(status="@" + user + " " + tweet, in_reply_to_status_id=tweetId)
+	mainMenu()
+
 # Tweets from the current user's account.
 def tweet():
-	option = input("Would you like to spoof your location?\n1. Yes\n2. No\nYour answer: ")
+	print "Choose an option:\n"
+	print "1. Tweet normally"
+	print "2. Tweet while spoofing a location"
+	print "3. Respond to a user's tweet"
+	print "4. Go back to the main menu"
+	option = input("Choose an option: ")
 	if option == 1:
-		waldo()
-	elif option == 2:
 		tweet = raw_input("\nWhat's on your mind? ")
 		api.update_status(tweet)
+		mainMenu()
+	elif option == 2:
+		waldo()
+	elif option == 3:
+		reply()
+	elif option == 4:
 		mainMenu()
 	else:
 		print "\nYou screwed up! Try again!"
@@ -128,9 +145,17 @@ def checkdm():
 		print result.text
 	mainMenu()
 
+# Searches for people
+def peopleFind():
+	query = raw_input("What is the name of the person you want to find? ")
+	search = api.search_users(query)
+	for result in search:
+		print result.text
+	mainMenu()
+
 # Main menu (duh...)
 def mainMenu():
-	print "\nSnake Charmer, version 0.5"
+	print "\nSnake Charmer, version 0.6"
 	user = api.me()
 	print "Tweeting as: @" + user.screen_name + " | " + user.name
 	print "Make a selection"
@@ -141,6 +166,7 @@ def mainMenu():
 	print "5. Direct message somebody"
 	print "6. Change bio"
 	print "7. Check direct messages"
+	print "8. Find somebody"
 	option = input("Your choice: ")
 	if option == 1:
 		timeline()
@@ -156,6 +182,8 @@ def mainMenu():
 		bio_main()
 	elif option == 7:
 		checkdm()
+	elif option == 8:
+		peopleFind()
 	else:
 		print "\nYou screwed up! Try again!"
 		mainMenu()
