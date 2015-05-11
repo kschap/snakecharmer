@@ -1,14 +1,9 @@
 # Snake Charmer, version 0.6.
 import tweepy
 from geopy.geocoders import GoogleV3
-"""
-Initializes the API.
-Here's where it gets interesting. Because I don't know of any good ways of securing the keys from others, I'm just going to remove them.
-If you want access keys, email me at kmschapm AT oakland DOT edu.
-Don't spam me though. That's bad.
-Note to self: REMOVE KEYS BEFORE COMMITTING TO GITHUB!
-"""
 consumer_key = ''
+
+Initializes API.
 consumer_secret = ''
 token_key = ''
 token_secret = ''
