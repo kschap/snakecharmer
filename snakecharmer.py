@@ -1,9 +1,9 @@
 # Snake Charmer, version 0.6.
 import tweepy
 from geopy.geocoders import GoogleV3
-consumer_key = ''
 
-Initializes API.
+# Initializes API.
+consumer_key = ''
 consumer_secret = ''
 token_key = ''
 token_secret = ''
