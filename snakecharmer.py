@@ -73,7 +73,7 @@ def tweet():
 
 # Searches for a screen name and prints latest tweets from them.
 def stalk():
-	user = raw_input("\nWho do you want to stalk? ")
+	user = raw_input("\nWhose feed would you like to read? ")
 	user = api.user_timeline(user)
 	for result in user:
 		print result.text
@@ -157,7 +157,7 @@ def mainMenu():
 	print "1. Get timeline"
 	print "2. Search Twitter"
 	print "3. Tweet something"
-	print "4. Stalk somebody"
+	print "4. Look at someone else's feed."
 	print "5. Direct message somebody"
 	print "6. Change bio"
 	print "7. Check direct messages"
